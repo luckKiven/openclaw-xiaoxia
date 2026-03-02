@@ -1,0 +1,84 @@
+# OpenClaw Backup - Sensitive Files Exclusion
+
+# API Keys & Credentials
+.env
+.env.local
+.env.*.local
+*.env
+openclaw.json
+openclaw.*.json
+*.key
+*.pem
+*.crt
+*.secret
+
+# Agent Sessions & Memory (may contain personal data)
+.agents/
+.claude/
+.codebuddy/
+.pi/
+agents/main/sessions/
+agents/*/sessions/
+memory/
+MEMORY.md
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime Data
+midscene_run/
+midscene-reports/
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+!docs/**/*.png
+!assets/**/*.png
+
+# Build Outputs
+dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Dependencies
+node_modules/
+vendor/
+.bundle/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test Coverage
+coverage/
+*.lcov
+
+# Secret Detection
+.secrets.baseline
