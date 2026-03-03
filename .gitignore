@@ -1,6 +1,5 @@
 node_modules
 **/node_modules/
-capability-evolver/
 .env
 docker-compose.extra.yml
 dist
