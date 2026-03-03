@@ -1,0 +1,88 @@
+# {{projectName}} - 面试题汇总
+
+_深度面试题，检验理解程度_
+
+---
+
+{{#each modules}}
+## 📦 {{name}} 模块（20 题）
+
+### 一、业务流程（5 题）
+
+{{#each questions.business}}
+#### 题 {{id}}：{{question}}
+
+**思考提示：**
+{{#each hints}}
+- {{.}}
+{{/each}}
+
+**参考答案：**
+{{answer}}
+
+**难度：** {{difficulty}}
+
+---
+
+{{/each}}
+
+### 二、技术实现（8 题）
+
+{{#each questions.technical}}
+#### 题 {{id}}：{{question}}
+
+**思考提示：**
+{{#each hints}}
+- {{.}}
+{{/each}}
+
+**参考答案：**
+{{answer}}
+
+**难度：** {{difficulty}}
+
+---
+
+{{/each}}
+
+### 三、边界场景（4 题）
+
+{{#each questions.edgeCase}}
+#### 题 {{id}}：{{question}}
+
+**思考提示：**
+{{#each hints}}
+- {{.}}
+{{/each}}
+
+**参考答案：**
+{{answer}}
+
+**难度：** {{difficulty}}
+
+---
+
+{{/each}}
+
+### 四、优化思考（3 题）
+
+{{#each questions.optimization}}
+#### 题 {{id}}：{{question}}
+
+**思考提示：**
+{{#each hints}}
+- {{.}}
+{{/each}}
+
+**参考答案：**
+{{answer}}
+
+**难度：** {{difficulty}}
+
+---
+
+{{/each}}
+
+{{/each}}
+
+_由 Project X-Ray 生成 🦴_

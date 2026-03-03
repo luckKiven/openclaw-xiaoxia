@@ -1,0 +1,61 @@
+# {{projectName}} - 项目概览
+
+_项目整体情况一览_
+
+---
+
+## 📦 技术栈
+
+| 项目 | 值 |
+|------|-----|
+| **编程语言** | {{techStack.language}} |
+| **框架** | {{techStack.framework}} |
+{{#if techStack.database}}
+| **数据库** | {{techStack.database}} |
+{{/if}}
+{{#if techStack.orm}}
+| **ORM** | {{techStack.orm}} |
+{{/if}}
+
+### 关键依赖
+
+{{#each techStack.dependencies}}
+- **{{category}}**: {{libs}}
+{{/each}}
+
+---
+
+## 📊 代码规模
+
+| 指标 | 数值 |
+|------|------|
+| **总文件数** | {{stats.totalFiles}} |
+| **总代码行数** | {{stats.totalLines}} |
+| **代码行数** | {{stats.codeLines}} |
+| **测试文件数** | {{stats.testFiles}} |
+
+### 按文件类型统计
+
+{{#each stats.byExtension}}
+- **{{@key}}**: {{files}} 文件，{{lines}} 行
+{{/each}}
+
+---
+
+## 🏗️ 架构风格
+
+- **识别结果**: {{architecture.style}}
+- **置信度**: {{architecture.confidence}}%
+- **识别模式**: {{architecture.patterns}}
+
+---
+
+## 📁 目录结构
+
+```
+{{fileStructure}}
+```
+
+---
+
+_由 Project X-Ray 生成 🦴_

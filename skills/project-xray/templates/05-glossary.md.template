@@ -1,0 +1,37 @@
+# {{projectName}} - 术语表
+
+_项目中的专业术语和领域概念_
+
+---
+
+## 📖 业务术语
+
+| 术语 | 解释 | 出现位置 |
+|------|------|---------|
+{{#each businessTerms}}
+| {{term}} | {{definition}} | {{location}} |
+{{/each}}
+
+---
+
+## 🔧 技术术语
+
+| 术语 | 解释 | 相关模块 |
+|------|------|---------|
+{{#each techTerms}}
+| {{term}} | {{definition}} | {{module}} |
+{{/each}}
+
+---
+
+## 📝 缩写词
+
+| 缩写 | 全称 | 含义 |
+|------|------|------|
+{{#each abbreviations}}
+| {{abbr}} | {{full}} | {{meaning}} |
+{{/each}}
+
+---
+
+_由 Project X-Ray 生成 🦴_

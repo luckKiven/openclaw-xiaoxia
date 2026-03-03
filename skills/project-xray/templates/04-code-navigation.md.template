@@ -1,0 +1,56 @@
+# {{projectName}} - 代码导航地图
+
+_快速定位功能代码_
+
+---
+
+## 🗺️ 功能 - 文件映射表
+
+| 功能 | 文件路径 | 说明 |
+|------|---------|------|
+{{#each modules}}
+| {{name}} 模块 | `{{path}}/` | {{files}} 个文件 |
+{{/each}}
+
+---
+
+## 📍 关键文件位置
+
+### 配置文件
+
+- `package.json` - 项目配置
+- `.env.example` - 环境变量示例
+{{#if hasTsConfig}}
+- `tsconfig.json` - TypeScript 配置
+{{/if}}
+
+### 入口文件
+
+{{#each entryPoints}}
+- `{{file}}` - {{description}}
+{{/each}}
+
+### 测试文件
+
+- `test/` 或 `tests/` - 测试目录
+- `*.test.ts` 或 `*.spec.ts` - 测试文件
+
+---
+
+## 🔍 如何查找
+
+### 想找 X 功能？
+
+1. 先看 `03-core-modules.md` 了解模块职责
+2. 根据职责定位到对应模块目录
+3. 在模块目录中查找具体实现
+
+### 想找 X 接口？
+
+1. 查找 `*.controller.ts` 文件
+2. 搜索路由定义（如 `@Get()`, `@Post()`）
+3. 追踪到对应的 service
+
+---
+
+_由 Project X-Ray 生成 🦴_

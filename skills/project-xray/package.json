@@ -1,0 +1,33 @@
+{
+  "name": "project-xray",
+  "version": "1.0.0",
+  "description": "项目 X 光透视分析工具 - 让新手快速理解陌生项目",
+  "author": "jixiang",
+  "main": "bin/xray.js",
+  "bin": {
+    "xray": "./bin/xray.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint lib bin"
+  },
+  "keywords": [
+    "project-analysis",
+    "codebase-understanding",
+    "documentation-generator"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "glob": "^10.0.0",
+    "fs-extra": "^11.0.0",
+    "dependency-tree": "^10.0.0",
+    "handlebars": "^4.7.0",
+    "ora": "^8.0.0",
+    "chalk": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  }
+}

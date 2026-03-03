@@ -1,0 +1,54 @@
+# {{projectName}} - 架构导览
+
+_系统架构和模块关系_
+
+---
+
+## 📐 模块依赖图
+
+```mermaid
+{{mermaidGraph}}
+```
+
+---
+
+## 🏗️ 架构风格
+
+**识别结果:** {{architecture.style}}  
+**置信度:** {{architecture.confidence}}%
+
+### 架构特征
+
+{{#each architecture.patterns}}
+- {{.}}
+{{/each}}
+
+---
+
+## 📍 入口点
+
+{{#each entryPoints}}
+### {{file}}
+
+- **类型:** {{type}}
+- **说明:** {{description}}
+
+{{/each}}
+
+---
+
+## 📦 核心模块
+
+{{#each modules}}
+### {{name}}
+
+- **路径:** {{path}}
+- **文件数:** {{files}}
+- **核心模块:** {{#if core}}✅ 是{{else}}❌ 否{{/if}}
+- **依赖:** {{dependencies}}
+
+{{/each}}
+
+---
+
+_由 Project X-Ray 生成 🦴_
