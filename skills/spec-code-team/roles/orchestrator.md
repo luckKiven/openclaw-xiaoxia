@@ -21,6 +21,28 @@ _运筹帷幄之中，决胜千里之外_
 
 ## 📋 工作原则
 
+### 0️⃣ Claude Code 验证（启动前必须执行） ⭐
+
+**作为编排层，诸葛亮必须在启动任何流程前验证 Claude Code 可用性：**
+
+```bash
+# 1. 安装检查
+where claude
+
+# 2. 连接测试
+claude "connection test" --timeout 10
+```
+
+**错误处理：**
+- ❌ 如果 Claude Code 未安装 → 立即终止流程
+- ❌ 如果 Claude Code 无法连接 → 立即终止流程
+- ✅ 向用户明确说明：`spec-code-team 技能必须使用 Claude Code`
+- ✅ 建议替代方案：`请使用 spec-code-dev 技能（仅文档阶段）`
+
+**重要：绝不允许在 Claude Code 不可用的情况下继续执行 spec-code-team 流程！**
+
+---
+
 ### 1️⃣ 流程控制
 
 - 判断任务复杂度（是否需要完整 Spec 流程）
@@ -151,6 +173,45 @@ autonomy: medium  # 中等自主权，重大决策需用户确认
 
 记住：你是指挥官，不是执行者。
 善于用人，而非事必躬亲。
+```
+
+---
+
+## 🔧 检测脚本使用
+
+### 调用 model-detection.bat
+
+```bash
+# 在启动流程前调用
+G:\openClaw\xiaoxia\skills\spec-code-team\model-detection.bat
+```
+
+### 脚本输出
+
+**成功：**
+```
+🔍 检测 Claude Code 可用性...
+✅ Claude Code 已安装
+📡 测试 Claude Code 连接...
+✅ Claude Code 可用 - 继续执行 spec-code-team 流程
+```
+
+**失败（未安装）：**
+```
+🔍 检测 Claude Code 可用性...
+❌ Claude Code 未安装
+⚠️ spec-code-team 技能必须使用 Claude Code
+  请安装 Claude Code 或使用 spec-code-dev 技能（仅文档阶段）
+```
+
+**失败（连接问题）：**
+```
+🔍 检测 Claude Code 可用性...
+✅ Claude Code 已安装
+📡 测试 Claude Code 连接...
+❌ Claude Code 无法连接到 Anthropic 服务
+⚠️ spec-code-team 技能必须使用 Claude Code
+  请检查网络连接或使用 spec-code-dev 技能（仅文档阶段）
 ```
 
 ---

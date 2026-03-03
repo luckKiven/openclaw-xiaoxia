@@ -236,12 +236,69 @@ cd {project-path}
 
 ## ⚙️ 执行步骤
 
-### Step 0: 初始化
+### Step 0: 初始化和 Claude Code 验证 ⭐
 
-1. 确定工作区路径：`F:\2025ideazdjx\openClaw-project\feature\{project-name}\`
-2. 创建项目目录
-3. 告知用户工作区位置
-4. 初始化 Git 仓库（如需要）
+> **重要：** spec-code-team 技能必须使用 Claude Code，这是硬性要求！
+
+#### 1. Claude Code 可用性验证（必须通过）
+
+**执行检测脚本：**
+```bash
+# Windows
+G:\openClaw\xiaoxia\skills\spec-code-team\model-detection.bat
+
+# 或手动检查
+where claude
+claude "connection test" --timeout 10
+```
+
+**验证逻辑：**
+- ✅ 检查 Claude Code 是否已安装 (`where claude`)
+- ✅ 验证 Claude Code 能否正常连接 Anthropic 服务 (`claude "test"`)
+- ❌ **如果任一检查失败，立即终止并报错**
+
+**错误提示：**
+```
+❌ Claude Code 不可用
+
+spec-code-team 技能必须使用 Claude Code 进行墨子审核
+
+解决方案：
+  1. 安装 Claude Code: https://claude.ai/download
+  2. 或使用 spec-code-dev 技能（仅文档阶段，不需要 Claude Code）
+
+命令：
+  /spec-code-dev 分析 F:\your-project
+```
+
+#### 2. 确定工作区路径
+
+路径：`F:\2025ideazdjx\openClaw-project\feature\{project-name}\`
+
+#### 3. 创建项目目录
+
+```bash
+New-Item -ItemType Directory -Path {workdir} -Force
+```
+
+#### 4. 告知用户工作区位置
+
+```
+工作区：F:\2025ideazdjx\openClaw-project\feature\{project-name}\
+✅ Claude Code 验证通过 - 继续执行 spec-code-team 流程
+```
+
+#### 5. 初始化 Git 仓库（如需要）
+
+```bash
+cd {workdir}
+git init
+git checkout -b feature/{feature-name}
+```
+
+---
+
+### Step 1: 需求规格
 
 ### Step 1: 需求规格
 
