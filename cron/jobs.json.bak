@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "5c2d632a-daf6-49a9-bc6e-587f12030ad2",
+      "name": "小虾-evolve-每小时",
+      "description": "每小时执行 Evolver 自我进化",
+      "enabled": true,
+      "createdAtMs": 1772682895379,
+      "updatedAtMs": 1772701380031,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "node G:\\openClaw\\xiaoxia\\skills\\evolver\\index.js run"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772704980031,
+        "lastRunAtMs": 1772701253491,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 126540,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 5,
+        "lastError": "Channel is required (no configured channels detected). Set delivery.channel explicitly or use a main session with a previous channel."
+      }
+    },
+    {
+      "id": "bd475ae3-804c-4d0e-aca4-e3d6261daad2",
+      "name": "小虾-GitHub 备份 - 每小时",
+      "description": "每小时自动备份到 GitHub",
+      "enabled": true,
+      "createdAtMs": 1772682905487,
+      "updatedAtMs": 1772701224943,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "powershell -ExecutionPolicy Bypass -File G:\\openClaw\\xiaoxia\\scripts\\github-backup.ps1"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772704824943,
+        "lastRunAtMs": 1772701210481,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 14462,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 5,
+        "lastError": "Channel is required (no configured channels detected). Set delivery.channel explicitly or use a main session with a previous channel."
+      }
+    }
+  ]
+}

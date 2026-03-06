@@ -129,16 +129,41 @@ _匠心独运，千锤百炼_
 # 巧匠（前端）
 role: 前端工程师
 name: 巧匠
-model: qwen3-max/qwen3-coder-next
+executor: codex  # ✅ 使用 Codex CLI
+codex_model: qwen3-coder-next
 priority: medium
 autonomy: low  # 严格按 Spec 执行
 
 # 铸剑师（后端）
 role: 后端工程师
 name: 铸剑师
-model: qwen3-max/qwen3-coder-plus
+executor: codex  # ✅ 使用 Codex CLI
+codex_model: qwen3-coder-plus
 priority: medium
 autonomy: low  # 严格按 Spec 执行
+```
+
+### Codex 接入说明
+
+**调用方式：**
+```bash
+# 前端实现
+codex exec --model qwen3-coder-next --prompt "$SpecContent\n\n任务：$Task"
+
+# 后端实现
+codex exec --model qwen3-coder-plus --prompt "$SpecContent\n\n任务：$Task"
+```
+
+**协议转换：**
+```
+Codex CLI → codex-cn-bridge (localhost:3000) → 阿里云 Qwen-Coder API
+```
+
+**优势：**
+- ✅ 统一入口：所有编码通过 Codex CLI
+- ✅ 成本更低：Qwen-Coder 比 Claude 便宜
+- ✅ 速度更快：国内 API 响应快
+- ✅ 可追溯：Codex 自动记录会话历史
 ```
 
 ---

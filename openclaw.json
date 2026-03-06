@@ -1,0 +1,419 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.27",
+    "lastTouchedAt": "2026-03-05T01:16:59.138Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-01T07:58:33.427Z",
+    "lastRunVersion": "2026.2.27",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "qwen-portal:default": {
+        "provider": "qwen-portal",
+        "mode": "oauth"
+      }
+    }
+  },
+  "acp": {
+    "defaultAgent": "claude-code",
+    "allowedAgents": [
+      "claude-code"
+    ]
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "qwen-portal": {
+        "baseUrl": "https://portal.qwen.ai/v1",
+        "apiKey": "qwen-oauth",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "coder-model",
+            "name": "Qwen Coder",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "vision-model",
+            "name": "Qwen Vision",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "custom-open-bigmodel-cn": {
+        "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+        "apiKey": "4d583b9b38ab4175babfc6c26a2427e3.EL2dXp5xYf2Z7wOy",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-4.7-flash",
+            "name": "glm-4.7-flash (Custom Provider)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "vllm": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+        "apiKey": "VLLM_API_KEY",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3-max-2026-01-23",
+            "name": "qwen3-max-2026-01-23",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "zhipu": {
+        "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+        "apiKey": "4d583b9b38ab4175babfc6c26a2427e3.EL2dXp5xYf2Z7wOy",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-4.7-flash",
+            "name": "glm-4.7-flash (Custom Provider)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "glm-5",
+            "name": "GLM-5 (智谱最强逻辑推理模型)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "qwen3-max": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
+        "apiKey": "sk-sp-77d2957b98154f1f9ca102db60b56331",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3-max-2026-01-23",
+            "name": "Qwen3-Max (旗舰版)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5-plus",
+            "name": "Qwen3.5-Plus (推荐)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3-coder-next",
+            "name": "Qwen3-Coder-Next (编程)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3-coder-plus",
+            "name": "Qwen3-Coder-Plus (编程增强)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "glm-5",
+            "name": "GLM-5 (最新)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "glm-4.7",
+            "name": "GLM-4.7",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "kimi-k2.5",
+            "name": "Kimi-K2.5 (月之暗面)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "minimax-m2.5",
+            "name": "MiniMax-M2.5",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "qwen3-max/qwen3.5-plus"
+      },
+      "models": {
+        "qwen-portal/coder-model": {
+          "alias": "qwen"
+        },
+        "qwen-portal/vision-model": {},
+        "qwen3.5-plus": {},
+        "qwen-portal/qwen3.5-plus": {},
+        "custom-open-bigmodel-cn/glm-4.7-flash": {
+          "alias": "zhipu"
+        },
+        "vllm/deepseek-chat": {
+          "alias": "deepseek"
+        },
+        "vllm/deepseek-reasoner": {
+          "alias": "reasoner"
+        },
+        "zhipu/glm-4.7-flash": {
+          "alias": "zhipu"
+        },
+        "vllm/qwen3-max-2026-01-23": {},
+        "qwen3-max/qwen3-max-2026-01-23": {
+          "alias": "qwen3-max"
+        },
+        "qwen-portal/qwen3-coder-next": {},
+        "qwen-portal/qwen3-coder-plus": {},
+        "custom-open-bigmodel-cn/glm-4.7": {},
+        "zhipu/glm-4.7": {},
+        "kimi/kimi-k2.5": {},
+        "qwen3-max/glm-5": {
+          "alias": "glm-5"
+        },
+        "qwen3-max/glm-4.7": {
+          "alias": "glm-4.7"
+        },
+        "qwen3-max/kimi-k2.5": {
+          "alias": "kimi"
+        },
+        "qwen3-max/minimax-m2.5": {
+          "alias": "minimax"
+        },
+        "qwen3-max/qwen3.5-plus": {}
+      },
+      "workspace": "G:\\openClaw\\xiaoxia\\workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "gateway": {
+    "port": 18788,
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://172.28.132.57:18788",
+        "htpp://172.28.128.1:18788",
+        "http://10.70.157.240:18788",
+        "http://localhost:18788",
+        "http://127.0.0.1:18788",
+        "http://192.168.253.1:18788"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "8479d410f4a27ab8a9a4e863ef4c05c86b0efd137dcdb880"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "skills": {
+    "entries": {
+      "google-search-browser-use": {
+        "enabled": false
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "qwen-portal-auth": {
+        "enabled": true
+      },
+      "acpx": {
+        "enabled": true
+      }
+    }
+  }
+}

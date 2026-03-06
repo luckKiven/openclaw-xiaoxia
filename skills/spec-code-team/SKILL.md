@@ -124,10 +124,10 @@ description: 基于 Spec-Coding 的完整团队协作开发流程：整合 OpenC
 
 ---
 
-### Phase 5: 代码实现 (Implementation) ⭐ 新增
+### Phase 5: 代码实现 (Implementation) ⭐ 已接入 Codex
 
 ```
-流程：[基于确认的 Spec] → [巧匠/铸剑师实现] → [探雷测试] → [墨子 Review] → [诸葛亮合并]
+流程：[基于确认的 Spec] → [Codex 执行] → [探雷测试] → [墨子 Review] → [诸葛亮合并]
 ```
 
 **产出物料：**
@@ -137,11 +137,25 @@ description: 基于 Spec-Coding 的完整团队协作开发流程：整合 OpenC
 - Git 提交记录
 
 **负责 Agent：**
-- 前端实现：巧匠 (qwen3-coder-next)
-- 后端实现：铸剑师 (qwen3-coder-plus)
+- 前端实现：巧匠 → **Codex CLI** (`qwen3-coder-next`) ✅
+- 后端实现：铸剑师 → **Codex CLI** (`qwen3-coder-plus`) ✅
 - 测试验证：探雷 (glm-5)
 - Code Review：墨子 (Claude Code) ⭐
 - Git 合并：诸葛亮
+
+**Codex 调用方式：**
+```bash
+# 前端实现
+codex exec --model qwen3-coder-next --prompt "$SpecContent\n\n任务：$Task"
+
+# 后端实现
+codex exec --model qwen3-coder-plus --prompt "$SpecContent\n\n任务：$Task"
+```
+
+**协议转换：**
+```
+Codex CLI → codex-cn-bridge (localhost:3000) → 阿里云 Qwen-Coder API
+```
 
 ---
 
