@@ -121,3 +121,19 @@ dist/protocol.schema.json
 
 # Synthing
 **/.stfolder/
+
+# OpenClaw runtime data (NEVER COMMIT)
+browser/
+logs/
+cron/runs/
+subagents/
+devices/
+identity/
+media/
+completions/
+canvas/
+agents/*/sessions/
+agents/*/agent/
+*.lock
+openclaw.json.bak*
+update-check.json
