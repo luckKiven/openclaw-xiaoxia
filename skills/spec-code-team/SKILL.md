@@ -1,18 +1,34 @@
 ---
 name: spec-code-team
-description: 基于 Spec-Coding 的完整团队协作开发流程：整合 OpenClaw 编排层 + Claude Code 架构师 + 执行层 Agent，实现从需求分析到代码交付的全流程自动化。适用于复杂项目、新功能开发、跨模块需求。
+description: 基于 Spec-Coding 的完整团队协作开发流程：整合 OpenClaw 编排层 + Claude CLI 架构师 + Codex CLI 执行层，实现从需求分析到代码交付的全流程自动化。技能自包含角色定义，无需预先配置 agents。适用于复杂项目、新功能开发、跨模块需求。
 ---
 
 # Spec-Code-Team 技能 (企业级团队协作版)
 
-> ⚠️ **依赖要求**
->
-> 使用本技能需要以下环境：
-> - ✅ OpenClaw 运行时（编排层）
-> - ✅ Claude Code 已安装并配置（架构师角色）
-> - ✅ Agent 团队配置（`agents/` 目录）
->
-> 如果只有 OpenClaw 没有 Claude Code，请使用 `spec-code-dev` 技能（仅文档阶段）。
+> **技能自包含** - 角色定义内置于技能中，无需预先配置 `agents/` 目录
+> 
+> 用户安装技能后可直接使用，Agent 团队由技能动态召唤。
+
+---
+
+## ⚠️ 依赖要求
+
+使用本技能需要以下环境：
+
+| 依赖 | 用途 | 必需 | 解决方案 |
+|------|------|------|----------|
+| **OpenClaw 运行时** | 编排层 | ✅ | `openclaw gateway start` |
+| **Claude CLI** | 墨子（架构师） | ✅ | https://claude.ai/download |
+| **Codex CLI** | 巧匠/铸剑师（执行） | ✅ | `npm install -g @openai/codex` |
+| **codex-cn-bridge** | Codex 协议转换 | ✅ | `openclaw skills install codex-cn-bridge` |
+
+**检查依赖：**
+```bash
+/spec-code-team --check
+```
+
+**如果只有 OpenClaw 没有 CLI 工具：**
+请使用 `spec-code-dev` 技能（仅文档阶段，不需要 CLI）。
 
 ---
 
@@ -34,30 +50,37 @@ description: 基于 Spec-Coding 的完整团队协作开发流程：整合 OpenC
 ## 🏗️ 三层架构
 
 ```
-┌─────────────────────────────────────────────────┐
-│           编排层 (Orchestrator)                  │
-│           诸葛亮 (qwen3.5-plus)                  │
-│  职责：流程控制、任务分发、Git 操作、用户沟通       │
-└─────────────────────────────────────────────────┘
-                      ↓
-┌─────────────────────────────────────────────────┐
-│             架构层 (Architect)                   │
-│      小白 (kimi-k2.5) + 墨子 (Claude Code) ⭐    │
-│  职责：需求分析、技术设计、数据契约、测试计划      │
-└─────────────────────────────────────────────────┘
-                      ↓
-┌─────────────────────────────────────────────────┐
-│             执行层 (Workers)                     │
-│   巧匠 (qwen3-coder-next) + 铸剑师 (qwen3-coder-plus) │
-│  职责：按 Spec 实现前端/后端代码、单元测试          │
-└─────────────────────────────────────────────────┘
-                      ↓
-┌─────────────────────────────────────────────────┐
-│             质量层 (QA)                          │
-│            探雷 (glm-5)                          │
-│  职责：测试验证、Code Review、质量报告            │
-└─────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│              编排层 (Orchestrator)                       │
+│         诸葛亮 (qwen3.5-plus) via sessions_spawn        │
+│  职责：流程控制、任务分发、Git 操作、用户沟通              │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│                架构层 (Architect)                        │
+│   小白 (kimi-k2.5) via sessions_spawn                    │
+│   墨子 (Claude CLI) ⭐ via claude command                │
+│  职责：需求分析、技术设计、数据契约、测试计划、Code Review │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│                执行层 (Workers)                          │
+│   巧匠 (Codex CLI → qwen3-coder-next)                    │
+│   铸剑师 (Codex CLI → qwen3-coder-plus)                  │
+│  职责：按 Spec 实现前端/后端代码、单元测试                  │
+│                                                          │
+│  协议转换：codex-cn-bridge (localhost:3000)              │
+│  Codex CLI → 阿里云 Qwen-Coder API                        │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│                质量层 (QA)                               │
+│         探雷 (glm-5) via sessions_spawn                 │
+│  职责：测试验证、质量报告                                 │
+└─────────────────────────────────────────────────────────┘
 ```
+
+**技能自包含** - 所有角色定义在 `roles/` 目录，无需用户配置 `agents/`。
 
 ---
 
@@ -159,33 +182,60 @@ Codex CLI → codex-cn-bridge (localhost:3000) → 阿里云 Qwen-Coder API
 
 ---
 
-## 🤖 Agent 角色配置
+## 🤖 Agent 角色配置（技能自带）
+
+**技能自包含角色定义** - 无需用户配置 `agents/` 目录，技能内部动态召唤。
 
 ### 编排层
 
-| 角色 | 名字 | 模型 | 职责 |
-|------|------|------|------|
-| Spec-Orchestrator | 诸葛亮 | qwen3.5-plus | 流程控制、任务分发、Git 操作 |
+| 角色 | 名字 | 模型 | 召唤方式 |
+|------|------|------|----------|
+| Spec-Orchestrator | 诸葛亮 | `qwen3-max/qwen3.5-plus` | `sessions_spawn` |
 
 ### 架构层
 
-| 角色 | 名字 | 模型 | 职责 |
-|------|------|------|------|
-| Spec-Analyst | 小白 | kimi-k2.5 | 需求分析、文档编写 |
-| Spec-Architect | 墨子 | **Claude Code** ⭐ | 技术设计、架构审核、Code Review |
+| 角色 | 名字 | 模型 | 召唤方式 |
+|------|------|------|----------|
+| Spec-Analyst | 小白 | `qwen3-max/kimi-k2.5` | `sessions_spawn` |
+| Spec-Architect | 墨子 | **Claude CLI** ⭐ | `claude` 命令 |
 
 ### 执行层
 
-| 角色 | 名字 | 模型 | 职责 |
-|------|------|------|------|
-| Spec-Frontend | 巧匠 | qwen3-coder-next | 前端实现 |
-| Spec-Backend | 铸剑师 | qwen3-coder-plus | 后端实现 |
+| 角色 | 名字 | 模型 | 召唤方式 |
+|------|------|------|----------|
+| Spec-Frontend | 巧匠 | `codex` → `qwen3-coder-next` | `codex exec` |
+| Spec-Backend | 铸剑师 | `codex` → `qwen3-coder-plus` | `codex exec` |
 
 ### 质量层
 
-| 角色 | 名字 | 模型 | 职责 |
-|------|------|------|------|
-| Spec-Reviewer | 探雷 | glm-5 | 测试验证、质量报告 |
+| 角色 | 名字 | 模型 | 召唤方式 |
+|------|------|------|----------|
+| Spec-Reviewer | 探雷 | `qwen3-max/glm-5` | `sessions_spawn` |
+
+### 模型配置说明
+
+**Codex CLI 模型配置**（参考 codex-cn-bridge）：
+
+```bash
+# 前端实现（巧匠）
+codex exec --model qwen3-coder-next --prompt "$Task"
+
+# 后端实现（铸剑师）
+codex exec --model qwen3-coder-plus --prompt "$Task"
+
+# 协议转换（由 codex-cn-bridge 提供）
+# Codex CLI → localhost:3000 → 阿里云 Qwen-Coder API
+```
+
+**可用模型**（在 codex-cn-bridge 中配置）：
+
+| 模型别名 | 实际提供商 | 用途 |
+|---------|-----------|------|
+| `qwen3-coder-next` | 阿里云 Qwen-Coder | 前端实现 |
+| `qwen3-coder-plus` | 阿里云 Qwen-Coder | 后端实现 |
+| `qwen3.5-plus` | 阿里云 Qwen | 通用编码 |
+| `kimi-k2.5` | Moonshot | 需求分析 |
+| `glm-5` | 智谱 | 测试验证 |
 
 ---
 
@@ -347,14 +397,136 @@ git checkout -b feature/{feature-name}
 2. **最终总审**：墨子全链路审查
 3. **用户确认**：等待确认
 
-### Step 5: 代码实现
+### Step 5: 代码实现（渐进式编码方案）⭐
 
-1. **任务分发**：诸葛亮分配任务给巧匠（前端）和铸剑师（后端）
-2. **代码实现**：按 Spec 实现功能代码
-3. **单元测试**：按 Test Plan 编写测试
-4. **测试验证**：探雷执行测试并报告
-5. **Code Review**：墨子审查代码质量
-6. **Git 合并**：诸葛亮创建分支、提交代码、推送仓库
+**渐进式编码** - 分阶段、可追溯、自动回滚
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Phase 5: 代码实现 (渐进式)                              │
+├─────────────────────────────────────────────────────────┤
+│  5.1 任务分发 → 5.2 增量实现 → 5.3 单元测试 → 5.4 验证  │
+│       ↓              ↓              ↓             ↓     │
+│  5.5 Code Review → 5.6 问题修复 → 5.7 合并主干          │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### 5.1 任务分发
+
+诸葛亮将任务分解为前端和后端：
+
+```bash
+# 前端任务
+巧匠，请实现登录表单组件
+- Spec: user-login-requirements-spec.md
+- 设计：user-login-technical-design.md
+- 契约：user-login-data-contract.md
+
+# 后端任务
+铸剑师，请实现登录 API
+- Spec: user-login-requirements-spec.md
+- 设计：user-login-technical-design.md
+- 契约：user-login-data-contract.md
+```
+
+#### 5.2 增量实现（使用 Codex CLI）
+
+**巧匠（前端）：**
+```bash
+# 通过 Codex CLI 实现（协议转换到 Qwen-Coder）
+codex exec --model qwen3-coder-next \
+  --prompt "$(cat user-login-data-contract.md)\n\n实现登录表单组件" \
+  --output-dir src/frontend/
+```
+
+**铸剑师（后端）：**
+```bash
+# 通过 Codex CLI 实现（协议转换到 Qwen-Coder-Plus）
+codex exec --model qwen3-coder-plus \
+  --prompt "$(cat user-login-data-contract.md)\n\n实现登录 API" \
+  --output-dir src/backend/
+```
+
+#### 5.3 单元测试
+
+探雷按 Test Plan 编写测试：
+
+```bash
+# 前端测试
+npm test -- src/frontend/LoginForm.test.tsx
+
+# 后端测试
+npm test -- src/backend/auth.test.ts
+```
+
+#### 5.4 验证
+
+探雷执行测试并报告覆盖率：
+
+```
+✅ 单元测试：32/32 通过
+✅ 覆盖率：95%
+⚠️ 边界场景：2 个失败（需修复）
+```
+
+#### 5.5 Code Review
+
+墨子审查代码质量：
+
+```bash
+# Claude CLI 审查
+claude "请审查 src/ 目录的代码，检查是否符合 Spec 设计"
+```
+
+输出：
+```markdown
+## Code Review 报告
+
+### ✅ 通过项
+- 代码结构清晰
+- 遵循 Spec 设计
+- 错误处理完善
+
+### ⚠️ 建议优化
+- 第 45 行：提取为独立函数
+
+### ❌ 必须修复
+- [严重] 第 123 行：密码未加密
+```
+
+#### 5.6 问题修复
+
+根据 Code Review 结果：
+- ✅ 通过项 → 继续
+- ⚠️ 建议项 → 记录到 TODO
+- ❌ 必须修复 → 打回重做（最多 3 次）
+
+#### 5.7 合并主干
+
+诸葛亮合并代码：
+
+```bash
+git add .
+git commit -m "feat: 实现用户登录功能
+
+- 前端：登录表单组件
+- 后端：登录 API
+- 测试：覆盖率 95%
+- Review: 墨子通过"
+git push origin feature/user-login
+```
+
+---
+
+### 🔄 渐进式编码的优势
+
+| 特性 | 传统方式 | 渐进式编码 |
+|------|---------|-----------|
+| **追溯性** | 难以追溯 | 每次提交关联 Spec |
+| **可回滚** | 困难 | Git 分支管理 |
+| **问题定位** | 困难 | 分阶段验证 |
+| **Code Review** | 最后一次性 | 每阶段审查 |
+| **测试覆盖** | 可能遗漏 | Test Plan 驱动 |
 
 ---
 
@@ -375,46 +547,106 @@ git checkout -b feature/{feature-name}
 
 ## 🚀 使用示例
 
-### 输入
+### 安装
+
+```bash
+# 通过 ClawHub 安装（推荐）
+openclaw skills install spec-code-team
+
+# 或从 GitHub 克隆
+git clone https://github.com/luckKiven/openclaw-xiaoxia.git
+cp -r openclaw-xiaoxia/skills/spec-code-team ~/.openclaw/skills/
+```
+
+### 检查依赖
+
+```bash
+/spec-code-team --check
+
+# 输出示例：
+# ✅ Claude CLI 已安装
+# ✅ Codex CLI 已安装
+# ✅ codex-cn-bridge 服务运行中 (端口 3000)
+# ✅ 所有依赖检查通过
+```
+
+### 运行
 
 ```
-/spec-code-team 项目地址是：F:\my-projects\ecommerce 增加用户登录功能
+/spec-code-team F:\my-projects\ecommerce 增加用户登录功能
 ```
 
-### 输出
+### 输出示例
 
 ```
-工作区：F:\2025ideazdjx\openClaw-project\feature\ecommerce\
+🦐 Spec-Code-Team 技能启动
+========================
+项目：F:\my-projects\ecommerce
+功能：增加用户登录功能
 
-Phase 1: 需求规格
-├── 小白生成 constitution.md ✅
-├── 小白生成 user-login-requirements-spec.md ✅
-├── 墨子审核通过 ✅
-└── 用户确认 ✅
+✅ Claude CLI 已安装
+✅ Codex CLI 已安装
+✅ codex-cn-bridge 服务运行中 (端口 3000)
 
-Phase 2: 技术设计
-├── 墨子生成 user-login-technical-design.md ✅
-├── 诸葛亮审核通过 ✅
-└── 用户确认 ✅
+📁 工作区：F:\2025ideazdjx\openClaw-project\feature\ecommerce\
+✅ 工作区已创建
+📦 Git 仓库已初始化
 
-Phase 3: 数据契约
-├── 墨子生成 user-login-data-contract.md ✅
-├── 诸葛亮审核通过 ✅
-└── 用户确认 ✅
+📋 Phase 1: 需求规格
+==================
+🤖 召唤 小白 (analyst)...
+   模型：qwen3-max/kimi-k2.5
+   任务：分析项目并生成需求规格文档...
+✅ 小白已召唤（需求分析）
 
-Phase 4: 测试计划
-├── 探雷生成 user-login-test-plan.md ✅
-├── 墨子总审通过 ✅
-└── 用户确认 ✅
+🤖 召唤 墨子 (architect)...
+   模型：claude-code
+   任务：审核需求规格文档...
+✅ 墨子已召唤（需求审核）
 
-Phase 5: 代码实现
-├── 巧匠实现前端组件 ✅
-├── 铸剑师实现后端 API ✅
-├── 探雷执行测试 (覆盖率 95%) ✅
-├── 墨子 Code Review 通过 ✅
-└── 诸葛亮 Git 提交 ✅
+✅ constitution.md 已生成
+✅ user-login-requirements-spec.md 已生成
+✅ 墨子审核通过
 
-🎉 所有阶段完成！代码已提交到仓库。
+请确认是否继续 Phase 2: 技术设计？ [y/n]
+```
+
+---
+
+## 📦 ClawHub 发布
+
+### 元数据 (`_meta.json`)
+
+```json
+{
+  "name": "spec-code-team",
+  "version": "1.0.0",
+  "description": "基于 Spec-Coding 的完整团队协作开发流程",
+  "author": "jixiang",
+  "license": "MIT",
+  "dependencies": [
+    "codex-cn-bridge"
+  ],
+  "requires": {
+    "claude-cli": true,
+    "codex-cli": true
+  },
+  "tags": ["spec-coding", "team", "claude", "codex", "enterprise"]
+}
+```
+
+### 发布流程
+
+```bash
+# 1. 更新版本号
+# 编辑 _meta.json
+
+# 2. 打包
+cd G:\openClaw\xiaoxia\skills
+tar -czf spec-code-team.tar.gz spec-code-team/
+
+# 3. 上传 ClawHub
+# 访问 https://clawhub.com 上传
 ```
 
 ---

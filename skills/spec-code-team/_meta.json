@@ -1,0 +1,41 @@
+{
+  "name": "spec-code-team",
+  "version": "1.0.0",
+  "description": "基于 Spec-Coding 的完整团队协作开发流程：整合 OpenClaw 编排层 + Claude CLI 架构师 + Codex CLI 执行层，实现从需求分析到代码交付的全流程自动化。",
+  "author": "jixiang",
+  "license": "MIT",
+  "homepage": "https://github.com/luckKiven/openclaw-xiaoxia/tree/main/skills/spec-code-team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luckKiven/openclaw-xiaoxia.git",
+    "directory": "skills/spec-code-team"
+  },
+  "dependencies": [
+    "codex-cn-bridge"
+  ],
+  "requires": {
+    "claude-cli": {
+      "name": "Claude CLI",
+      "url": "https://claude.ai/download",
+      "required": true,
+      "check": "where claude"
+    },
+    "codex-cli": {
+      "name": "Codex CLI",
+      "url": "https://github.com/openai/codex",
+      "required": true,
+      "check": "where codex"
+    }
+  },
+  "entry": "index.js",
+  "tags": [
+    "spec-coding",
+    "team",
+    "claude",
+    "codex",
+    "enterprise",
+    "workflow"
+  ],
+  "category": "development",
+  "minOpenClawVersion": "0.8.0"
+}
