@@ -28,13 +28,16 @@ def print_learning_path():
     """打印学习路线"""
     path = get_learning_path()
     
-    print("\n" + "="*60)
-    print("📚 大模型系统学习路线")
-    print("="*60)
+    print("\n" + "="*70)
+    print("💰 大模型变现学习路线 - 33 岁程序员专属")
+    print("="*70)
+    
+    print("\n📌 核心策略：项目驱动学习，学习直接变现")
+    print("-"*70)
     
     for phase_key, phase in path.items():
         print(f"\n{phase_key.upper().replace('_', ' ')}: {phase['name']} ({phase['duration']})")
-        print("-"*60)
+        print("-"*70)
         
         for topic in phase["topics"]:
             print(f"\n  📖 {topic['name']}")
@@ -42,9 +45,9 @@ def print_learning_path():
             print(f"     实践：{topic['practice']}")
             print(f"     检查点：{', '.join(topic['checkpoints'])}")
     
-    print("\n" + "="*60)
-    print("💡 提示：先自己思考再查资料，最后再问 AI")
-    print("="*60 + "\n")
+    print("\n" + "="*70)
+    print("💡 33 岁建议：先接单再学习，用项目倒逼成长")
+    print("="*70 + "\n")
 
 
 def print_resources(topic: str):
