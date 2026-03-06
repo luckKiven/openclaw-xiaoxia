@@ -7,7 +7,7 @@ Video Generator Adapters
 """
 
 from .base_adapter import VideoGeneratorAdapter
-from .kling_adapter import KlingAdapter
+from .kling_adapter_fixed import KlingAdapter
 from .jimeng_adapter import JimengAdapter
 
 __all__ = [

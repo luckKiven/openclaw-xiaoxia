@@ -10,6 +10,10 @@ import argparse
 import sys
 import os
 
+# 修复 Windows 编码问题
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+
 # 添加父目录到路径以便导入
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
