@@ -15,19 +15,33 @@ author: jixiang
 
 ## ⚠️ 依赖要求
 
+### 核心依赖
+
 | 依赖 | 用途 | 必需 | 安装命令 |
 |------|------|------|----------|
 | **PyYAML** | 工作流配置解析 | ✅ | `pip install pyyaml` |
 | **Pillow** | 图片处理 | ✅ | `pip install pillow` |
-| **ElevenLabs** | AI 配音 | ✅ | `pip install elevenlabs` + API Key |
-| **transformers** | CLIP 验证 | ⭕ | `pip install transformers torch` |
-| **python-docx** | Word 解析 | ⭕ | `pip install python-docx` |
-| **pandas** | Excel 解析 | ⭕ | `pip install pandas openpyxl` |
-| **pdfplumber** | PDF 解析 | ⭕ | `pip install pdfplumber` |
+| **edge-tts** | AI 配音（免费） | ✅ | `pip install edge-tts` |
+| **mutagen** | 音频处理 | ⭕ | `pip install mutagen` |
+| **requests** | HTTP 请求 | ⭕ | `pip install requests` |
+
+### AI 视频生成适配器（新增）
+
+| 依赖 | 用途 | 必需 | 安装命令 |
+|------|------|------|----------|
+| **midscene** | 浏览器自动化 | ⭕ | `pip install midscene` |
+
+> 💡 **说明：** midscene 用于调用可灵 AI/即梦 AI 的免费额度（网页自动化），仅在使用 `ai-generate` 命令时需要。
+
+### 外部工具
+
+| 工具 | 用途 | 必需 | 安装 |
+|------|------|------|------|
+| **FFmpeg** | 视频编辑合成 | ✅ | `choco install ffmpeg` 或官网下载 |
 
 **检查依赖：**
 ```bash
-/video-gen-pro --check
+python utils\check_deps.py
 ```
 
 ---
@@ -63,6 +77,27 @@ author: jixiang
 ---
 
 ## 🚀 使用示例
+
+### 🎬 AI 文生视频（免费额度）
+
+```bash
+# 使用可灵 AI 生成（每日 3-5 次免费）
+/video-gen-pro ai-generate "电影级特写镜头，2088 年的新上海雨夜，赛博朋克风格" --platform kling
+
+# 使用即梦 AI 生成（新用户送积分）
+/video-gen-pro ai-generate "一只可爱的猫咪在阳光下玩耍" --platform jimeng
+
+# 指定时长和画质
+/video-gen-pro ai-generate "你的提示词" --platform kling --duration 10 --quality 1080p
+
+# 异步模式（不等待完成）
+/video-gen-pro ai-generate "你的提示词" --platform kling --no-wait
+
+# 查看免费额度
+/video-gen-pro quota
+/video-gen-pro quota --platform kling
+/video-gen-pro quota --platform all
+```
 
 ### 1. 创建主角（可选）
 

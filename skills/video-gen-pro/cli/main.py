@@ -17,6 +17,7 @@ from core.project_manager import ProjectManager
 from core.flow_controller import FlowController
 from core.config_loader import ConfigLoader
 from memory.protagonist_db import ProtagonistDB
+from adapters.video_generator import get_adapter, KlingAdapter, JimengAdapter
 
 # F 盘物料产出目录
 OUTPUT_ROOT = "F:\\2025ideazdjx\\openClaw-project\\vedio"
@@ -86,6 +87,23 @@ def main():
     config_parser = subparsers.add_parser("config", help="配置管理")
     config_parser.add_argument("--show", action="store_true", help="显示当前配置")
     config_parser.add_argument("--template", help="设置默认模板")
+    
+    # ai-generate 命令（新增：AI 文生视频）
+    ai_gen_parser = subparsers.add_parser("ai-generate", help="AI 文生视频（使用免费额度）")
+    ai_gen_parser.add_argument("prompt", help="视频提示词")
+    ai_gen_parser.add_argument("--platform", "-p", choices=["kling", "jimeng", "可灵", "即梦"], 
+                               default="kling", help="AI 平台（kling=可灵，jimeng=即梦）")
+    ai_gen_parser.add_argument("--duration", "-d", type=int, choices=[5, 10], default=5, 
+                               help="视频时长（秒）")
+    ai_gen_parser.add_argument("--quality", "-q", choices=["720p", "1080p"], default="720p",
+                               help="画质")
+    ai_gen_parser.add_argument("--output", "-o", help="输出文件路径")
+    ai_gen_parser.add_argument("--no-wait", action="store_true", help="异步模式，不等待完成")
+    
+    # quota 命令（新增：查看免费额度）
+    quota_parser = subparsers.add_parser("quota", help="查看 AI 平台免费额度")
+    quota_parser.add_argument("--platform", "-p", choices=["kling", "jimeng", "all", "可灵", "即梦", "全部"],
+                              default="all", help="平台名称")
     
     args = parser.parse_args()
     
@@ -206,6 +224,124 @@ def main():
         elif args.template:
             # TODO: 实现配置保存
             print(f"默认模板已设置：{args.template}")
+    
+    elif args.command == "ai-generate":
+        # AI 文生视频
+        platform = args.platform.lower().replace("可灵", "kling").replace("即梦", "jimeng")
+        
+        print(f"🎬 开始 AI 视频生成")
+        print(f"  平台：{platform}")
+        print(f"  提示词：{args.prompt[:50]}...")
+        print(f"  时长：{args.duration}秒")
+        print(f"  画质：{args.quality}")
+        print()
+        
+        # 创建临时项目 ID
+        import uuid
+        project_id = f"ai_{uuid.uuid4().hex[:8]}"
+        
+        # 配置适配器
+        config = {
+            "duration": args.duration,
+            "quality": args.quality,
+        }
+        
+        adapter = get_adapter(platform, project_id, config)
+        
+        try:
+            # 生成视频
+            result = adapter.generate(args.prompt, duration=args.duration)
+            
+            if result.get("status") == "error":
+                print(f"❌ 生成失败：{result.get('message')}")
+                sys.exit(1)
+            
+            task_id = result.get("task_id")
+            print(f"✓ 任务已提交：{task_id}")
+            
+            if args.no_wait:
+                print("💡 异步模式：任务后台运行中")
+                print(f"   稍后使用以下命令查看状态:")
+                print(f"   video-gen-pro ai-status --task {task_id} --platform {platform}")
+            else:
+                print()
+                print("⏳ 等待生成完成（约 2-5 分钟）...")
+                print()
+                
+                # 等待完成
+                final_status = adapter.wait_for_completion(task_id, timeout=600, poll_interval=15)
+                
+                if final_status.get("status") == "completed":
+                    print("✓ 生成完成！")
+                    
+                    # 下载视频
+                    output_path = args.output or os.path.join(OUTPUT_ROOT, "ai_generated", f"{task_id}.mp4")
+                    if adapter.download_result(task_id, output_path):
+                        print(f"📁 视频已保存：{output_path}")
+                    else:
+                        print("⚠️  下载失败，但视频可在平台网页查看")
+                else:
+                    print(f"❌ 生成失败或超时：{final_status.get('status')}")
+                    print(f"   详情：{final_status.get('message', '请查看平台网页')}")
+                    sys.exit(1)
+                    
+        finally:
+            adapter.close()
+    
+    elif args.command == "quota":
+        # 查看免费额度
+        platform_filter = args.platform.lower().replace("可灵", "kling").replace("即梦", "jimeng").replace("全部", "all")
+        
+        platforms = []
+        if platform_filter in ["all", "kling"]:
+            platforms.append(("kling", "可灵 AI"))
+        if platform_filter in ["all", "jimeng"]:
+            platforms.append(("jimeng", "即梦 AI"))
+        
+        print("=" * 60)
+        print("AI 视频生成免费额度")
+        print("=" * 60)
+        print()
+        
+        for platform_id, platform_name in platforms:
+            print(f"📊 {platform_name} ({platform_id})")
+            print("-" * 40)
+            
+            config = {}
+            adapter = get_adapter(platform_id, "quota_check", config)
+            
+            try:
+                quota = adapter.get_free_quota()
+                
+                if quota.get("available"):
+                    if "remaining" in quota:
+                        print(f"  剩余额度：{quota['remaining']} 次/天")
+                    if "credit_remaining" in quota:
+                        print(f"  剩余积分：{quota['credit_remaining']}")
+                    if "estimated_generations" in quota:
+                        print(f"  预计可生成：{quota['estimated_generations']} 次")
+                    if "daily_limit" in quota:
+                        print(f"  每日限制：{quota['daily_limit']} 次")
+                    if "used_today" in quota:
+                        print(f"  今日已用：{quota['used_today']} 次")
+                    if "message" in quota:
+                        print(f"  说明：{quota['message']}")
+                else:
+                    print(f"  状态：不可用")
+                    if "message" in quota:
+                        print(f"  原因：{quota['message']}")
+                        
+            except Exception as e:
+                print(f"  ❌ 查询失败：{e}")
+            finally:
+                adapter.close()
+            
+            print()
+        
+        print("=" * 60)
+        print("💡 提示：免费额度每日刷新，建议充分利用")
+        print("   可灵 AI：每日 3-5 次免费生成")
+        print("   即梦 AI：新用户注册送积分，约 10-20 次")
 
 
 if __name__ == "__main__":
