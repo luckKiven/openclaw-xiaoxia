@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "skills": {
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1772527056533
+    },
+    "capability-evolver": {
+      "version": "1.21.4",
+      "installedAt": 1772527073873
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1772527096786
+    },
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1772527421003
+    },
+    "summarize": {
+      "version": "1.0.0",
+      "installedAt": 1772527448183
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1772528194390
+    },
+    "tavily-tool": {
+      "version": "0.1.1",
+      "installedAt": 1772528216072
+    },
+    "obsidian-cli-official": {
+      "version": "4.0.0",
+      "installedAt": 1772528227694
+    },
+    "nano-pdf": {
+      "version": "1.0.0",
+      "installedAt": 1772528246040
+    },
+    "elevenlabs-ai": {
+      "version": "1.0.0",
+      "installedAt": 1772528257348
+    },
+    "ffmpeg-video-editor": {
+      "version": "1.0.0",
+      "installedAt": 1772528268313
+    },
+    "clawflows": {
+      "version": "1.0.0",
+      "installedAt": 1772528279025
+    },
+    "humanize": {
+      "version": "1.0.0",
+      "installedAt": 1772528291694
+    },
+    "humanize-zh": {
+      "version": "1.0.0",
+      "installedAt": 1772528301964
+    },
+    "evolver": {
+      "version": "1.27.2",
+      "installedAt": 1772757368669
+    },
+    "feishu-evolver-wrapper": {
+      "version": "1.7.1",
+      "installedAt": 1772757377905
+    }
+  }
+}

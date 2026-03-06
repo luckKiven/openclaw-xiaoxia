@@ -1,0 +1,7 @@
+.env
+*.env
+midscene_run/
+.agents/
+.claude/
+.codebuddy/
+skills-lock.json
