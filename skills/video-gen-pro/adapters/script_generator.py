@@ -3,6 +3,8 @@ Video-Gen-Pro 脚本生成器
 
 使用免费 Qwen API 生成视频脚本
 
+输出路径：F:\2025ideazdjx\openClaw-project\vedio
+
 @author jixiang
 """
 

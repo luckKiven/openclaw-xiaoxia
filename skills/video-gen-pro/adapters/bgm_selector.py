@@ -3,6 +3,8 @@ Video-Gen-Pro 背景音乐选择器
 
 从本地音乐库选择或生成背景音乐
 
+输出路径：F:\2025ideazdjx\openClaw-project\vedio
+
 @author jixiang
 """
 

@@ -3,6 +3,8 @@ Video-Gen-Pro FFmpeg 视频编辑器
 
 使用 FFmpeg 进行视频合成、剪辑、转场等处理
 
+输出路径：F:\2025ideazdjx\openClaw-project\vedio
+
 @author jixiang
 """
 

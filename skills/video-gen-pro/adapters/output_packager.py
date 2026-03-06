@@ -3,6 +3,8 @@ Video-Gen-Pro 输出打包器
 
 整理和打包最终交付物
 
+输出路径：F:\2025ideazdjx\openClaw-project\vedio
+
 @author jixiang
 """
 

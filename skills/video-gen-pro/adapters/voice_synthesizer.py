@@ -3,6 +3,8 @@ Video-Gen-Pro Edge TTS 配音适配器
 
 使用微软 Edge TTS 免费配音服务
 
+输出路径：F:\2025ideazdjx\openClaw-project\vedio
+
 @author jixiang
 """
 

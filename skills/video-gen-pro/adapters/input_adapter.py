@@ -3,6 +3,8 @@ Video-Gen-Pro 输入处理适配器
 
 支持多种输入格式的解析：文本、Markdown、图片、Word、Excel、PDF
 
+输出路径：F:\2025ideazdjx\openClaw-project\vedio
+
 @author jixiang
 """
 

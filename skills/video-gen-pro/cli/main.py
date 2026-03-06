@@ -18,6 +18,9 @@ from core.flow_controller import FlowController
 from core.config_loader import ConfigLoader
 from memory.protagonist_db import ProtagonistDB
 
+# F 盘物料产出目录
+OUTPUT_ROOT = "F:\\2025ideazdjx\\openClaw-project\\vedio"
+
 
 def main():
     """CLI 主入口"""
@@ -90,12 +93,18 @@ def main():
         parser.print_help()
         sys.exit(1)
     
-    # 初始化路径
+    # 初始化路径 (使用 F 盘物料产出目录)
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    projects_dir = os.path.join(base_dir, "projects")
-    db_dir = os.path.join(base_dir, "memory", "protagonists")
+    projects_dir = os.path.join(OUTPUT_ROOT, "projects")
+    db_dir = os.path.join(OUTPUT_ROOT, "protagonists")
     config_dir = os.path.join(base_dir, "config")
     workflows_dir = os.path.join(base_dir, "workflows")
+    music_library = os.path.join(OUTPUT_ROOT, "music_library")
+    
+    # 确保输出目录存在
+    os.makedirs(projects_dir, exist_ok=True)
+    os.makedirs(db_dir, exist_ok=True)
+    os.makedirs(music_library, exist_ok=True)
     
     # 初始化组件
     project_manager = ProjectManager(projects_dir)
