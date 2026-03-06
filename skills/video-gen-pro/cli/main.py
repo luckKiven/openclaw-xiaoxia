@@ -93,10 +93,12 @@ def main():
     config_parser.add_argument("--template", help="设置默认模板")
     
     # ai-generate 命令（新增：AI 文生视频）
-    ai_gen_parser = subparsers.add_parser("ai-generate", help="AI 文生视频（使用免费额度）")
+    ai_gen_parser = subparsers.add_parser("ai-generate", help="AI 文生视频")
     ai_gen_parser.add_argument("prompt", help="视频提示词")
-    ai_gen_parser.add_argument("--platform", "-p", choices=["kling", "jimeng", "可灵", "即梦"], 
-                               default="kling", help="AI 平台（kling=可灵，jimeng=即梦）")
+    ai_gen_parser.add_argument("--platform", "-p", 
+                               choices=["kling", "jimeng", "jimeng-api", "可灵", "即梦", "即梦 API"], 
+                               default="jimeng-api", 
+                               help="AI 平台（jimeng-api=即梦官方 API，kling=可灵浏览器）")
     ai_gen_parser.add_argument("--duration", "-d", type=int, choices=[5, 10], default=5, 
                                help="视频时长（秒）")
     ai_gen_parser.add_argument("--quality", "-q", choices=["720p", "1080p"], default="720p",

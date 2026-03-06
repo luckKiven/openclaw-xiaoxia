@@ -78,25 +78,57 @@ python utils\check_deps.py
 
 ## 🚀 使用示例
 
-### 🎬 AI 文生视频（免费额度）
+### 🎬 AI 文生视频
+
+#### 方案 1：即梦 AI 官方 API（推荐⭐）
+
+**稳定、快速、生产级**
+
+```bash
+# 配置 API Key（首次使用）
+# Windows PowerShell:
+$env:VOLC_ACCESS_KEY="your_access_key"
+$env:VOLC_SECRET_KEY="your_secret_key"
+
+# 使用即梦 AI API 生成
+/video-gen-pro ai-generate "电影级特写镜头，2088 年的新上海雨夜，赛博朋克风格" --platform jimeng-api
+
+# 指定时长和画质
+/video-gen-pro ai-generate "你的提示词" --platform jimeng-api --duration 10 --quality 1080p
+
+# 价格：720p ¥0.28/秒，1080p ¥0.63/秒
+# 新用户送免费积分（约 ¥10-50）
+```
+
+**获取 API Key：** https://console.volcengine.com/iam
+
+#### 方案 2：可灵 AI 浏览器自动化（免费）
+
+**每日 3-5 次免费，但稳定性较差**
 
 ```bash
 # 使用可灵 AI 生成（每日 3-5 次免费）
 /video-gen-pro ai-generate "电影级特写镜头，2088 年的新上海雨夜，赛博朋克风格" --platform kling
 
-# 使用即梦 AI 生成（新用户送积分）
-/video-gen-pro ai-generate "一只可爱的猫咪在阳光下玩耍" --platform jimeng
-
 # 指定时长和画质
-/video-gen-pro ai-generate "你的提示词" --platform kling --duration 10 --quality 1080p
+/video-gen-pro ai-generate "你的提示词" --platform kling --duration 10 --quality 720p
 
 # 异步模式（不等待完成）
 /video-gen-pro ai-generate "你的提示词" --platform kling --no-wait
+```
 
-# 查看免费额度
+#### 方案 3：即梦 AI 网页版（手动）
+
+**访问：** https://jimeng.jianying.com
+
+---
+
+### 📊 查看额度
+
+```bash
 /video-gen-pro quota
 /video-gen-pro quota --platform kling
-/video-gen-pro quota --platform all
+/video-gen-pro quota --platform jimeng-api
 ```
 
 ### 1. 创建主角（可选）

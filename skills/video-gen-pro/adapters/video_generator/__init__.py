@@ -9,11 +9,13 @@ Video Generator Adapters
 from .base_adapter import VideoGeneratorAdapter
 from .kling_adapter_fixed import KlingAdapter
 from .jimeng_adapter import JimengAdapter
+from .jimeng_api_adapter import JimengAPIAdapter
 
 __all__ = [
     "VideoGeneratorAdapter",
     "KlingAdapter",
     "JimengAdapter",
+    "JimengAPIAdapter",
 ]
 
 
@@ -22,7 +24,7 @@ def get_adapter(platform: str, project_id: str, config: dict = None):
     获取视频生成适配器
     
     Args:
-        platform: 平台名称 (kling/jimeng)
+        platform: 平台名称 (kling/jimeng/jimeng-api)
         project_id: 项目 ID
         config: 配置字典
         
@@ -32,8 +34,11 @@ def get_adapter(platform: str, project_id: str, config: dict = None):
     adapters = {
         "kling": KlingAdapter,
         "jimeng": JimengAdapter,
+        "jimeng-api": JimengAPIAdapter,
         "可灵": KlingAdapter,
         "即梦": JimengAdapter,
+        "即梦 api": JimengAPIAdapter,
+        "即梦 API": JimengAPIAdapter,
     }
     
     adapter_class = adapters.get(platform.lower())
