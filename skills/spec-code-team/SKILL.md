@@ -20,7 +20,7 @@ description: 基于 Spec-Coding 的完整团队协作开发流程：整合 OpenC
 | **OpenClaw 运行时** | 编排层 | ✅ | `openclaw gateway start` |
 | **Claude CLI** | 墨子（架构师） | ✅ | https://claude.ai/download |
 | **Codex CLI** | 巧匠/铸剑师（执行） | ✅ | `npm install -g @openai/codex` |
-| **codex-cn-bridge** | Codex 协议转换 | ✅ | `openclaw skills install codex-cn-bridge` |
+| **codex-cn-bridge** | Codex 协议转换（可选） | ✅ | `openclaw skills install codex-cn-bridge` |
 
 **检查依赖：**
 ```bash

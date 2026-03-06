@@ -71,5 +71,15 @@
     "active_task_title": null,
     "applied_lessons": [],
     "hub_lessons": []
+  },
+  "last_solidify": {
+    "run_id": "run_1772680897605",
+    "at": "2026-03-06T05:35:45.393Z",
+    "event_id": "evt_1772775345393",
+    "capsule_id": "capsule_1770477654236",
+    "outcome": {
+      "status": "success",
+      "score": 0.85
+    }
   }
 }

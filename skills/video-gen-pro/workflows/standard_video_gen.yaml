@@ -1,0 +1,108 @@
+# Video-Gen-Pro 标准视频生成工作流
+# 作者：jixiang
+
+workflow:
+  name: standard_video_gen
+  version: "1.0"
+  description: "标准视频生成流程 - 从输入内容到完整视频作品"
+  
+  steps:
+    - id: parse_input
+      name: "输入解析"
+      description: "解析输入文件，提取文本和图片内容"
+      handler: "input_adapter.parse_input"
+      timeout_seconds: 30
+      retry_count: 2
+      output_key: "extracted_content"
+      
+    - id: analyze_content
+      name: "内容分析"
+      description: "分析内容主题、情感和结构"
+      handler: "content_analyzer.analyze"
+      depends_on: ["parse_input"]
+      timeout_seconds: 60
+      output_key: "content_outline"
+      
+    - id: generate_script
+      name: "脚本生成"
+      description: "生成视频脚本和旁白"
+      handler: "script_generator.generate"
+      depends_on: ["analyze_content"]
+      timeout_seconds: 45
+      retry_count: 2
+      output_key: "final_script"
+      
+    - id: generate_images
+      name: "视觉素材生成"
+      description: "根据脚本生成配图和封面"
+      handler: "image_generator.generate_visuals"
+      depends_on: ["generate_script"]
+      timeout_seconds: 120
+      retry_count: 3
+      output_key: "visual_assets"
+      
+    - id: validate_images
+      name: "图片一致性验证"
+      description: "使用 CLIP 验证生成图片与主角形象的一致性"
+      handler: "clip_validator.validate"
+      depends_on: ["generate_images"]
+      timeout_seconds: 30
+      optional: true
+      output_key: "validation_result"
+      
+    - id: synthesize_voice
+      name: "配音合成"
+      description: "使用 ElevenLabs 生成配音"
+      handler: "voice_synthesizer.synthesize"
+      depends_on: ["generate_script"]
+      timeout_seconds: 180
+      retry_count: 2
+      output_key: "voice_audio"
+      
+    - id: select_bgm
+      name: "背景音乐选择"
+      description: "根据内容情感选择背景音乐"
+      handler: "bgm_selector.select"
+      depends_on: ["analyze_content"]
+      timeout_seconds: 30
+      output_key: "bgm_audio"
+      
+    - id: edit_video
+      name: "视频编辑"
+      description: "合成视频片段、添加字幕和转场"
+      handler: "video_editor.compose"
+      depends_on: ["generate_images", "synthesize_voice", "select_bgm"]
+      timeout_seconds: 300
+      retry_count: 2
+      output_key: "raw_video"
+      
+    - id: package_output
+      name: "输出打包"
+      description: "生成最终交付物（视频、文案、元数据）"
+      handler: "output_packager.package"
+      depends_on: ["edit_video"]
+      timeout_seconds: 30
+      output_key: "final_package"
+
+  # 并行组配置
+  parallel_groups:
+    - group_id: "visual_generation"
+      steps: ["generate_images", "validate_images"]
+      max_concurrency: 2
+      
+    - group_id: "audio_preparation"
+      steps: ["synthesize_voice", "select_bgm"]
+      max_concurrency: 2
+
+  # 失败恢复策略
+  on_failure:
+    strategy: "checkpoint_recovery"
+    max_retries: 3
+    retry_delay_seconds: 10
+    notify_user: true
+    
+  # 检查点配置
+  checkpoints:
+    enabled: true
+    interval: "per_step"
+    ttl_days: 7
