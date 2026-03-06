@@ -1,0 +1,12 @@
+{
+  "name": "ai-learning-path",
+  "version": "1.0.0",
+  "description": "大模型系统学习助手 - 帮助程序员摆脱 AI 依赖",
+  "main": "index.py",
+  "scripts": {
+    "start": "python index.py",
+    "test": "python -c \"import index; print('OK')\""
+  },
+  "author": "jixiang",
+  "license": "MIT"
+}
