@@ -1,0 +1,102 @@
+[2026-03-07T02:15:38.206+08:00] Computer device destroyed
+[2026-03-07T02:15:38.414+08:00] Connecting to computer device
+[2026-03-07T02:15:43.507+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:15:43.508+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:15:43.508+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:15:44.513+08:00] Computer device destroyed
+[2026-03-07T02:17:11.387+08:00] Computer device destroyed
+[2026-03-07T02:17:11.490+08:00] Connecting to computer device
+[2026-03-07T02:17:12.134+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:17:12.137+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:17:12.137+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:17:13.073+08:00] Computer device destroyed
+[2026-03-07T02:18:05.143+08:00] Computer device destroyed
+[2026-03-07T02:18:05.237+08:00] Connecting to computer device
+[2026-03-07T02:18:05.732+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:18:05.734+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:18:05.735+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:18:06.676+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:18:06.676+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:18:11.776+08:00] Computer device destroyed
+[2026-03-07T02:45:36.446+08:00] Computer device destroyed
+[2026-03-07T02:45:36.536+08:00] Connecting to computer device
+[2026-03-07T02:45:37.201+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:45:37.203+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:45:37.204+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:45:39.023+08:00] [HealthCheck] WARNING: Mouse control may not be working. Expected (1652, 790), got (1919, 511), delta=(267, 279)
+[2026-03-07T02:46:33.799+08:00] Computer device destroyed
+[2026-03-07T02:46:33.901+08:00] Connecting to computer device
+[2026-03-07T02:46:34.433+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:46:34.437+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:46:34.438+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:46:35.358+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:46:35.358+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:46:36.312+08:00] Computer device destroyed
+[2026-03-07T02:47:22.531+08:00] Computer device destroyed
+[2026-03-07T02:47:22.665+08:00] Connecting to computer device
+[2026-03-07T02:47:23.176+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:47:23.178+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:47:23.178+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:47:24.055+08:00] Computer device destroyed
+[2026-03-07T02:47:58.923+08:00] Computer device destroyed
+[2026-03-07T02:47:59.023+08:00] Connecting to computer device
+[2026-03-07T02:47:59.549+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:47:59.551+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:47:59.551+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:48:00.586+08:00] Computer device destroyed
+[2026-03-07T02:49:04.278+08:00] Computer device destroyed
+[2026-03-07T02:49:04.390+08:00] Connecting to computer device
+[2026-03-07T02:49:04.959+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T02:49:04.964+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:49:04.964+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:49:05.987+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T02:49:05.987+08:00] Screenshot options { format: 'png' }
+[2026-03-07T02:49:11.549+08:00] Computer device destroyed

@@ -398,6 +398,8 @@ var _heartbeatTotalSent = 0;
 var _heartbeatTotalFailed = 0;
 var _latestAvailableWork = [];
 var _cachedHubNodeSecret = null;
+var _heartbeatIntervalMs = 0;
+var _heartbeatRunning = false;
 
 var NODE_SECRET_FILE = path.join(NODE_ID_DIR, 'node_secret');
 
@@ -442,7 +444,7 @@ function sendHelloToHub() {
 
   return fetch(endpoint, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: buildHubHeaders(),
     body: JSON.stringify(msg),
     signal: AbortSignal.timeout(15000),
   })
@@ -468,6 +470,18 @@ function getHubNodeSecret() {
     return persisted;
   }
   return null;
+}
+
+function _scheduleNextHeartbeat(delayMs) {
+  if (!_heartbeatRunning) return;
+  if (_heartbeatTimer) clearTimeout(_heartbeatTimer);
+  var delay = delayMs || _heartbeatIntervalMs;
+  _heartbeatTimer = setTimeout(function () {
+    if (!_heartbeatRunning) return;
+    sendHeartbeat().catch(function () {});
+    _scheduleNextHeartbeat();
+  }, delay);
+  if (_heartbeatTimer.unref) _heartbeatTimer.unref();
 }
 
 function sendHeartbeat() {
@@ -505,6 +519,18 @@ function sendHeartbeat() {
   })
     .then(function (res) { return res.json(); })
     .then(function (data) {
+      if (data && (data.error === 'rate_limited' || data.status === 'rate_limited')) {
+        var retryMs = Number(data.retry_after_ms) || 0;
+        var policy = data.policy || {};
+        var windowMs = Number(policy.window_ms) || 0;
+        var backoff = retryMs > 0 ? retryMs + 5000 : (windowMs > 0 ? windowMs + 5000 : _heartbeatIntervalMs);
+        if (backoff > _heartbeatIntervalMs) {
+          console.warn('[Heartbeat] Rate limited by hub. Next attempt in ' + Math.round(backoff / 1000) + 's. ' +
+            'Consider increasing HEARTBEAT_INTERVAL_MS to >= ' + (windowMs || backoff) + 'ms.');
+          _scheduleNextHeartbeat(backoff);
+        }
+        return { ok: false, error: 'rate_limited', retryMs: backoff };
+      }
       if (data && data.status === 'unknown_node') {
         console.warn('[Heartbeat] Node not registered on hub. Sending hello to re-register...');
         return sendHelloToHub().then(function (helloResult) {
@@ -548,40 +574,32 @@ function consumeAvailableWork() {
 }
 
 function startHeartbeat(intervalMs) {
-  if (_heartbeatTimer) return;
-  var interval = intervalMs || Number(process.env.HEARTBEAT_INTERVAL_MS) || 120000; // default 2min
+  if (_heartbeatRunning) return;
+  _heartbeatIntervalMs = intervalMs || Number(process.env.HEARTBEAT_INTERVAL_MS) || 360000; // default 6min
   _heartbeatStartedAt = Date.now();
+  _heartbeatRunning = true;
 
-  // Register with hub first (hello), then start heartbeat loop
   sendHelloToHub().then(function (r) {
     if (r.ok) console.log('[Heartbeat] Registered with hub. Node: ' + getNodeId());
     else console.warn('[Heartbeat] Hello failed (will retry via heartbeat): ' + (r.error || 'unknown'));
-  }).catch(function () {});
-
-  // First heartbeat after a short delay (let hello complete first)
-  setTimeout(function () {
-    sendHeartbeat().then(function (r) {
-      if (r.ok) console.log('[Heartbeat] Connected to hub. Node: ' + getNodeId());
-    }).catch(function () {});
-  }, 5000);
-
-  _heartbeatTimer = setInterval(function () {
-    sendHeartbeat().catch(function () {});
-  }, interval);
-
-  if (_heartbeatTimer.unref) _heartbeatTimer.unref();
+  }).catch(function () {}).then(function () {
+    if (!_heartbeatRunning) return;
+    // First heartbeat after hello completes, with enough gap to avoid rate limit
+    _scheduleNextHeartbeat(Math.max(30000, _heartbeatIntervalMs));
+  });
 }
 
 function stopHeartbeat() {
+  _heartbeatRunning = false;
   if (_heartbeatTimer) {
-    clearInterval(_heartbeatTimer);
+    clearTimeout(_heartbeatTimer);
     _heartbeatTimer = null;
   }
 }
 
 function getHeartbeatStats() {
   return {
-    running: !!_heartbeatTimer,
+    running: _heartbeatRunning,
     uptimeMs: _heartbeatStartedAt ? Date.now() - _heartbeatStartedAt : 0,
     totalSent: _heartbeatTotalSent,
     totalFailed: _heartbeatTotalFailed,
