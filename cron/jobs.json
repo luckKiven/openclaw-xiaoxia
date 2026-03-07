@@ -7,31 +7,26 @@
       "description": "每小时执行 Evolver 自我进化",
       "enabled": true,
       "createdAtMs": 1772682895379,
-      "updatedAtMs": 1772701380031,
+      "updatedAtMs": 1772892110993,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
         "staggerMs": 300000
       },
-      "sessionTarget": "isolated",
+      "sessionTarget": "main",
       "wakeMode": "now",
       "payload": {
-        "kind": "agentTurn",
-        "message": "node G:\\openClaw\\xiaoxia\\skills\\evolver\\index.js run"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "last"
+        "kind": "systemEvent",
+        "text": "执行 Evolver 自我进化"
       },
       "state": {
-        "nextRunAtMs": 1772704980031,
-        "lastRunAtMs": 1772701253491,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 126540,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 5,
-        "lastError": "Channel is required (no configured channels detected). Set delivery.channel explicitly or use a main session with a previous channel."
+        "nextRunAtMs": 1772895653466,
+        "lastRunAtMs": 1772892070667,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 40326,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
       }
     },
     {
@@ -40,31 +35,115 @@
       "description": "每小时自动备份到 GitHub",
       "enabled": true,
       "createdAtMs": 1772682905487,
-      "updatedAtMs": 1772701224943,
+      "updatedAtMs": 1772892070634,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
         "staggerMs": 300000
       },
-      "sessionTarget": "isolated",
+      "sessionTarget": "main",
       "wakeMode": "now",
       "payload": {
-        "kind": "agentTurn",
-        "message": "powershell -ExecutionPolicy Bypass -File G:\\openClaw\\xiaoxia\\scripts\\github-backup.ps1"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "last"
+        "kind": "systemEvent",
+        "text": "执行 GitHub 自动备份"
       },
       "state": {
-        "nextRunAtMs": 1772704824943,
-        "lastRunAtMs": 1772701210481,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 14462,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 5,
-        "lastError": "Channel is required (no configured channels detected). Set delivery.channel explicitly or use a main session with a previous channel."
+        "nextRunAtMs": 1772895610467,
+        "lastRunAtMs": 1772892010490,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 60144,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "a630f2e1-ffb2-4b95-87e1-8f8caffb16ba",
+      "name": "小虾-心跳检查 - 每 6 小时",
+      "enabled": true,
+      "createdAtMs": 1772759524421,
+      "updatedAtMs": 1772877778862,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "检查 C 盘剩余空间（告警阈值 35GB）、检查 Temp 目录大小（超过 500MB 时清理）、确保 memory/ 目录已备份。报告检查结果。"
+      },
+      "state": {
+        "nextRunAtMs": 1772899288626,
+        "lastRunAtMs": 1772877758224,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 20638,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "9cee2d06-9d51-48de-9045-f281d4584deb",
+      "name": "小虾 - 每日新闻 -09:10",
+      "enabled": true,
+      "createdAtMs": 1772759932121,
+      "updatedAtMs": 1772760118417,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 9 * * *"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "收集并汇总今天的科技、国情、金融、金价相关重要新闻，生成简洁的新闻简报。"
+      },
+      "state": {
+        "nextRunAtMs": 1772932200000
+      }
+    },
+    {
+      "id": "b256033c-9de2-4f6f-bb82-1b51d0d7b2f9",
+      "name": "小虾 - 每日天气日历 -09:05",
+      "enabled": true,
+      "createdAtMs": 1772759947030,
+      "updatedAtMs": 1772760108291,
+      "schedule": {
+        "kind": "cron",
+        "expr": "5 9 * * *"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "检查四川成都天气预报（今天和明天），检查日历事件（今日/明日安排），生成简洁的报告。"
+      },
+      "state": {
+        "nextRunAtMs": 1772931900000
+      }
+    },
+    {
+      "id": "f8e3a7c2-1d94-4b5e-a3f1-9c8d7e6b5a43",
+      "name": "小虾-self-improving-每小时",
+      "description": "每小时执行自我改进与记忆系统",
+      "enabled": true,
+      "createdAtMs": 1772892800000,
+      "updatedAtMs": 1772892800000,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "执行 self-improving-agent 记忆整理：检查错误记录、用户纠正、最佳实践，更新长期记忆。"
+      },
+      "state": {
+        "nextRunAtMs": 1772895600000
       }
     }
   ]

@@ -59,11 +59,11 @@
     },
     "evolver": {
       "version": "1.27.3",
-      "installedAt": 1772874130127
+      "installedAt": 1772895794520
     },
     "feishu-evolver-wrapper": {
       "version": "1.7.1",
-      "installedAt": 1772874137411
+      "installedAt": 1772895800084
     },
     "openclaw-tavily-search": {
       "version": "0.1.0",
@@ -88,6 +88,22 @@
     "system-resource-monitor": {
       "version": "1.0.0",
       "installedAt": 1772887738670
+    },
+    "todoist-task-manager": {
+      "version": "1.0.0",
+      "installedAt": 1772893995107
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1772894017839
+    },
+    "n8n-workflow-automation": {
+      "version": "1.0.0",
+      "installedAt": 1772894038821
+    },
+    "self-improving-agent-cn": {
+      "version": "1.0.0",
+      "installedAt": 1772894601293
     }
   }
 }
