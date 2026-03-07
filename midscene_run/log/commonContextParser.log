@@ -18,3 +18,13 @@
 [2026-03-07T02:49:07.019+08:00] screenshot dimensions 1920 x 1080
 [2026-03-07T02:49:07.019+08:00] calculated dpr: 1
 [2026-03-07T02:49:07.019+08:00] shrunkShotToLogicalRatio 1
+[2026-03-07T11:09:43.743+08:00] Getting interface description
+[2026-03-07T11:09:43.743+08:00] Interface description end
+[2026-03-07T11:09:43.743+08:00] Uploading test info to server
+[2026-03-07T11:09:43.743+08:00] UploadTestInfoToServer end
+[2026-03-07T11:09:43.743+08:00] will get size
+[2026-03-07T11:09:43.743+08:00] size: 1920x1080
+[2026-03-07T11:09:44.080+08:00] will get screenshot dimensions
+[2026-03-07T11:09:44.380+08:00] screenshot dimensions 1920 x 1080
+[2026-03-07T11:09:44.380+08:00] calculated dpr: 1
+[2026-03-07T11:09:44.380+08:00] shrunkShotToLogicalRatio 1

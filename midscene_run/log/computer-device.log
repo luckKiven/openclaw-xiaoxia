@@ -100,3 +100,17 @@ Available Displays: \\.\DISPLAY1
 [2026-03-07T02:49:05.987+08:00] Taking screenshot { displayId: undefined }
 [2026-03-07T02:49:05.987+08:00] Screenshot options { format: 'png' }
 [2026-03-07T02:49:11.549+08:00] Computer device destroyed
+[2026-03-07T11:09:42.706+08:00] Computer device destroyed
+[2026-03-07T11:09:42.752+08:00] Connecting to computer device
+[2026-03-07T11:09:43.258+08:00] Computer device connected 
+Type: Computer
+Platform: win32
+Display: Primary
+Screen Size: 1920x1080
+Available Displays: \\.\DISPLAY1
+
+[2026-03-07T11:09:43.259+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T11:09:43.259+08:00] Screenshot options { format: 'png' }
+[2026-03-07T11:09:43.743+08:00] Taking screenshot { displayId: undefined }
+[2026-03-07T11:09:43.743+08:00] Screenshot options { format: 'png' }
+[2026-03-07T11:09:48.800+08:00] Computer device destroyed

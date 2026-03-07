@@ -76,3 +76,42 @@
   param: null,
   type: 'invalid_request_error'
 }
+[2026-03-07T11:09:44.389+08:00] reasoning config for qwen3-vl: enable_thinking=true
+[2026-03-07T11:09:44.389+08:00] sending request to qwen3-vl-plus
+[2026-03-07T11:09:46.039+08:00] AI call failed (attempt 1/2), retrying in 2000ms... Error: 401 Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error
+[2026-03-07T11:09:48.791+08:00] call AI error AuthenticationError: 401 Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error
+    at APIError.generate (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async callAI (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\@midscene\core\dist\lib\ai-model\service-caller\index.js:293:32)
+    at async plan (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\@midscene\core\dist\lib\ai-model\llm-planning.js:175:64)
+    at async Object.executor (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\@midscene\core\dist\lib\agent\tasks.js:167:38)
+    at async TaskRunner.flush (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\@midscene\core\dist\lib\task-runner.js:167:35)
+    at async TaskExecutor.runAction (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\@midscene\core\dist\lib\agent\tasks.js:141:28)
+    at async runAiAct (F:\AppData\Local\npm-cache\_npx\d0e4a0894c1d769d\node_modules\@midscene\core\dist\lib\agent\agent.js:350:46) {
+  status: 401,
+  headers: Headers {
+    vary: 'Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding',
+    'x-request-id': '15129ee8-6a83-9cd4-8350-c40e24192e78',
+    'content-type': 'application/json',
+    'req-cost-time': '491',
+    'req-arrive-time': '1772852988448',
+    'resp-start-time': '1772852988940',
+    'x-envoy-upstream-service-time': '30',
+    'content-encoding': 'gzip',
+    date: 'Sat, 07 Mar 2026 03:09:48 GMT',
+    server: 'istio-envoy',
+    'transfer-encoding': 'chunked'
+  },
+  requestID: '15129ee8-6a83-9cd4-8350-c40e24192e78',
+  error: {
+    message: 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error',
+    type: 'invalid_request_error',
+    param: null,
+    code: 'invalid_api_key'
+  },
+  code: 'invalid_api_key',
+  param: null,
+  type: 'invalid_request_error'
+}
