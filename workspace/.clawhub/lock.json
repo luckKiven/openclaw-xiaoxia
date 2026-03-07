@@ -64,6 +64,30 @@
     "feishu-evolver-wrapper": {
       "version": "1.7.1",
       "installedAt": 1772874137411
+    },
+    "openclaw-tavily-search": {
+      "version": "0.1.0",
+      "installedAt": 1772885848960
+    },
+    "security-scanner": {
+      "version": "1.0.0",
+      "installedAt": 1772887585814
+    },
+    "skillscanner": {
+      "version": "1.0.1",
+      "installedAt": 1772887643916
+    },
+    "weekly-report-generator": {
+      "version": "1.0.0",
+      "installedAt": 1772887686608
+    },
+    "daily-report": {
+      "version": "1.0.0",
+      "installedAt": 1772887724148
+    },
+    "system-resource-monitor": {
+      "version": "1.0.0",
+      "installedAt": 1772887738670
     }
   }
 }
