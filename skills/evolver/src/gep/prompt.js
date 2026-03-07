@@ -437,6 +437,7 @@ When creating a new skill in skills/<name>/:
 CRITICAL SAFETY (SYSTEM CRASH PREVENTION):
 - NEVER delete/empty/overwrite: feishu-evolver-wrapper, feishu-common, feishu-post, feishu-card, feishu-doc, common, clawhub, git-sync, evolver.
 - NEVER delete root files: MEMORY.md, SOUL.md, IDENTITY.md, AGENTS.md, USER.md, HEARTBEAT.md, RECENT_EVENTS.md, TOOLS.md, openclaw.json, .env, package.json.
+- NEVER modify C:\Users\14015\.openclaw\ 下的配置文件 (cron/jobs.json, openclaw.json, agents/, skills/) — 所有配置必须写到 G:\openClaw\xiaoxia\
 - Fix broken skills; DO NOT delete and recreate.
 - Violation = ROLLBACK + FAILED.
 
