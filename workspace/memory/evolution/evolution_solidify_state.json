@@ -1,35 +1,41 @@
 {
   "last_run": {
-    "run_id": "run_1772776922157",
-    "created_at": "2026-03-06T06:02:02.378Z",
-    "parent_event_id": "evt_1772775345393",
-    "selected_gene_id": "gene_gep_innovate_from_opportunity",
+    "run_id": "run_1772949694189",
+    "created_at": "2026-03-08T06:01:35.021Z",
+    "parent_event_id": null,
+    "selected_gene_id": "gene_gep_repair_from_errors",
     "selected_capsule_id": null,
     "selector": {
-      "selected": "gene_gep_innovate_from_opportunity",
+      "selected": "gene_gep_repair_from_errors",
       "reason": [
         "signals match gene.signals_match",
-        "signals: stable_success_plateau",
-        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.667",
-        "drift_intensity: 0.577"
+        "signals: log_error, errsig:**ASSISTANT**: 编码问题，让我直接用 PowerShell 记录这个错误： [TOOL: write], high_tool_usage:exec, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.646",
+        "drift_intensity: 0.707"
       ],
       "alternatives": []
     },
     "signals": [
-      "stable_success_plateau"
+      "log_error",
+      "errsig:**ASSISTANT**: 编码问题，让我直接用 PowerShell 记录这个错误： [TOOL: write]",
+      "high_tool_usage:exec",
+      "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772776922149",
-      "category": "innovate",
+      "id": "mut_1772949694169",
+      "category": "repair",
       "trigger_signals": [
-        "stable_success_plateau"
+        "log_error",
+        "errsig:**ASSISTANT**: 编码问题，让我直接用 PowerShell 记录这个错误： [TOOL: write]",
+        "high_tool_usage:exec",
+        "repeated_tool_usage:exec"
       ],
-      "target": "gene:gene_gep_innovate_from_opportunity",
-      "expected_effect": "explore new strategy combinations to escape local optimum",
-      "risk_level": "medium"
+      "target": "gene:gene_gep_repair_from_errors",
+      "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
+      "risk_level": "low"
     },
-    "mutation_id": "mut_1772776922149",
+    "mutation_id": "mut_1772949694169",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -49,13 +55,17 @@
     "reused_chain_id": null,
     "baseline_untracked": [
       "assets/gep/candidates.jsonl",
+      "assets/gep/capsules.json",
+      "assets/gep/events.jsonl",
       "assets/gep/failed_capsules.json",
-      "assets/gep/genes.jsonl"
+      "assets/gep/genes.json",
+      "assets/gep/genes.jsonl",
+      "workspace/memory/skills_list_cache.json"
     ],
-    "baseline_git_head": "8598d8bab0159a61db3bf6724f94b430b154f368",
+    "baseline_git_head": "011da9414eb393bd585a7237678412c0496cf4e5",
     "blast_radius_estimate": {
-      "files": 25,
-      "lines": 2000
+      "files": 12,
+      "lines": 960
     },
     "active_task_id": null,
     "active_task_title": null,
