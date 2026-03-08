@@ -1,41 +1,37 @@
 {
   "last_run": {
-    "run_id": "run_1772949694189",
-    "created_at": "2026-03-08T06:01:35.021Z",
+    "run_id": "run_1772953266010",
+    "created_at": "2026-03-08T07:01:06.880Z",
     "parent_event_id": null,
-    "selected_gene_id": "gene_gep_repair_from_errors",
+    "selected_gene_id": null,
     "selected_capsule_id": null,
     "selector": {
-      "selected": "gene_gep_repair_from_errors",
+      "selected": null,
       "reason": [
-        "signals match gene.signals_match",
-        "signals: log_error, errsig:**ASSISTANT**: 编码问题，让我直接用 PowerShell 记录这个错误： [TOOL: write], high_tool_usage:exec, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.646",
+        "no matching gene found; new gene may be required",
+        "signals: high_tool_usage:exec, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.750",
         "drift_intensity: 0.707"
       ],
       "alternatives": []
     },
     "signals": [
-      "log_error",
-      "errsig:**ASSISTANT**: 编码问题，让我直接用 PowerShell 记录这个错误： [TOOL: write]",
       "high_tool_usage:exec",
       "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772949694169",
-      "category": "repair",
+      "id": "mut_1772953265978",
+      "category": "optimize",
       "trigger_signals": [
-        "log_error",
-        "errsig:**ASSISTANT**: 编码问题，让我直接用 PowerShell 记录这个错误： [TOOL: write]",
         "high_tool_usage:exec",
         "repeated_tool_usage:exec"
       ],
-      "target": "gene:gene_gep_repair_from_errors",
-      "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
+      "target": "behavior:protocol",
+      "expected_effect": "improve success rate and reduce repeated operational cost",
       "risk_level": "low"
     },
-    "mutation_id": "mut_1772949694169",
+    "mutation_id": "mut_1772953265978",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -53,16 +49,8 @@
     "reused_asset_id": null,
     "reused_source_node": null,
     "reused_chain_id": null,
-    "baseline_untracked": [
-      "assets/gep/candidates.jsonl",
-      "assets/gep/capsules.json",
-      "assets/gep/events.jsonl",
-      "assets/gep/failed_capsules.json",
-      "assets/gep/genes.json",
-      "assets/gep/genes.jsonl",
-      "workspace/memory/skills_list_cache.json"
-    ],
-    "baseline_git_head": "011da9414eb393bd585a7237678412c0496cf4e5",
+    "baseline_untracked": [],
+    "baseline_git_head": "9e0e7a378737e6c0fcb0d02d352deb07ec10770e",
     "blast_radius_estimate": {
       "files": 12,
       "lines": 960
