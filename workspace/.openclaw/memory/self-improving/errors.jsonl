@@ -1,0 +1,1 @@
+{"timestamp":"2026-03-08T13:00:00+08:00","command":"node skills/evolver/dist/cli.js","error":"Cannot find module 'dist/cli.js'","fix":"Evolver 技能没有 dist 目录，应该使用 index.js","category":"path_error","count":1}
