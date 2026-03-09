@@ -1,41 +1,37 @@
 {
   "last_run": {
-    "run_id": "run_1773018175522",
-    "created_at": "2026-03-09T01:02:56.021Z",
+    "run_id": "run_1773021699673",
+    "created_at": "2026-03-09T02:01:40.188Z",
     "parent_event_id": null,
-    "selected_gene_id": "gene_gep_repair_from_errors",
+    "selected_gene_id": null,
     "selected_capsule_id": null,
     "selector": {
-      "selected": "gene_gep_repair_from_errors",
+      "selected": null,
       "reason": [
-        "signals match gene.signals_match",
-        "signals: log_error, errsig:**TOOLRESULT**: To github.com:luckKiven/openclaw-xiaoxia.git ! [rejected] main -> main (fetch first) error: failed to push some refs to 'git@github.com:luckKiven/openclaw-xiaoxia.git' hint: Updates were rejected because the remote contains work that you do hin, high_tool_usage:exec, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.741",
+        "no matching gene found; new gene may be required",
+        "signals: memory_missing, user_missing",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.800",
         "drift_intensity: 0.707"
       ],
       "alternatives": []
     },
     "signals": [
-      "log_error",
-      "errsig:**TOOLRESULT**: To github.com:luckKiven/openclaw-xiaoxia.git ! [rejected] main -> main (fetch first) error: failed to push some refs to 'git@github.com:luckKiven/openclaw-xiaoxia.git' hint: Updates were rejected because the remote contains work that you do hin",
-      "high_tool_usage:exec",
-      "repeated_tool_usage:exec"
+      "memory_missing",
+      "user_missing"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1773018175514",
-      "category": "repair",
+      "id": "mut_1773021699661",
+      "category": "innovate",
       "trigger_signals": [
-        "log_error",
-        "errsig:**TOOLRESULT**: To github.com:luckKiven/openclaw-xiaoxia.git ! [rejected] main -> main (fetch first) error: failed to push some refs to 'git@github.com:luckKiven/openclaw-xiaoxia.git' hint: Updates were rejected because the remote contains work that you do hin",
-        "high_tool_usage:exec",
-        "repeated_tool_usage:exec"
+        "memory_missing",
+        "user_missing"
       ],
-      "target": "gene:gene_gep_repair_from_errors",
-      "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
-      "risk_level": "low"
+      "target": "behavior:protocol",
+      "expected_effect": "explore new strategy combinations to escape local optimum",
+      "risk_level": "medium"
     },
-    "mutation_id": "mut_1773018175514",
+    "mutation_id": "mut_1773021699661",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -54,7 +50,7 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "45612ea090850ae79386e992755e01a6e1bc31a5",
+    "baseline_git_head": "cb417e4d92d6b1eda669673c0e86a25b7260f534",
     "blast_radius_estimate": {
       "files": 12,
       "lines": 960
