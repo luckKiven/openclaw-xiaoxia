@@ -1,7 +1,7 @@
 {
   "last_run": {
-    "run_id": "run_1773025341590",
-    "created_at": "2026-03-09T03:02:22.404Z",
+    "run_id": "run_1773028980350",
+    "created_at": "2026-03-09T04:03:00.853Z",
     "parent_event_id": null,
     "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
     "selected_capsule_id": null,
@@ -9,31 +9,31 @@
       "selected": "gene_gep_optimize_prompt_and_assets",
       "reason": [
         "signals match gene.signals_match",
-        "signals: protocol_drift, user_improvement_suggestion:ability-evolver** | GEP 自我进化引擎（完整版） | `clawhub install capability-evolver` | | **evolver** | 自我进化引擎（简化版） | `clawhub install evolver` | | **session-logs** | 会话日志搜索分析 | `clawhub install session-logs`, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.799",
+        "signals: protocol_drift, high_tool_usage:exec, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.667",
         "drift_intensity: 0.707"
       ],
       "alternatives": []
     },
     "signals": [
       "protocol_drift",
-      "user_improvement_suggestion:ability-evolver** | GEP 自我进化引擎（完整版） | `clawhub install capability-evolver` | | **evolver** | 自我进化引擎（简化版） | `clawhub install evolver` | | **session-logs** | 会话日志搜索分析 | `clawhub install session-logs`",
+      "high_tool_usage:exec",
       "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1773025341579",
+      "id": "mut_1773028980338",
       "category": "innovate",
       "trigger_signals": [
         "protocol_drift",
-        "user_improvement_suggestion:ability-evolver** | GEP 自我进化引擎（完整版） | `clawhub install capability-evolver` | | **evolver** | 自我进化引擎（简化版） | `clawhub install evolver` | | **session-logs** | 会话日志搜索分析 | `clawhub install session-logs`",
+        "high_tool_usage:exec",
         "repeated_tool_usage:exec"
       ],
       "target": "gene:gene_gep_optimize_prompt_and_assets",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1773025341579",
+    "mutation_id": "mut_1773028980338",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -52,7 +52,7 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "c7cd573757544f8ab0ef87068545264c9248324c",
+    "baseline_git_head": "f899e3522b22d7f04f33b16f02de60f0c22174f5",
     "blast_radius_estimate": {
       "files": 20,
       "lines": 1600
