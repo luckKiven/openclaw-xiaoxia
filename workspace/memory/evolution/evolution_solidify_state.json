@@ -1,39 +1,35 @@
 {
   "last_run": {
-    "run_id": "run_1773028980350",
-    "created_at": "2026-03-09T04:03:00.853Z",
+    "run_id": "run_1773032500297",
+    "created_at": "2026-03-09T05:01:40.818Z",
     "parent_event_id": null,
-    "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
+    "selected_gene_id": null,
     "selected_capsule_id": null,
     "selector": {
-      "selected": "gene_gep_optimize_prompt_and_assets",
+      "selected": null,
       "reason": [
-        "signals match gene.signals_match",
-        "signals: protocol_drift, high_tool_usage:exec, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.667",
+        "no matching gene found; new gene may be required",
+        "signals: repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.798",
         "drift_intensity: 0.707"
       ],
       "alternatives": []
     },
     "signals": [
-      "protocol_drift",
-      "high_tool_usage:exec",
       "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1773028980338",
+      "id": "mut_1773032500286",
       "category": "innovate",
       "trigger_signals": [
-        "protocol_drift",
-        "high_tool_usage:exec",
         "repeated_tool_usage:exec"
       ],
-      "target": "gene:gene_gep_optimize_prompt_and_assets",
+      "target": "behavior:protocol",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1773028980338",
+    "mutation_id": "mut_1773032500286",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -52,10 +48,10 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "f899e3522b22d7f04f33b16f02de60f0c22174f5",
+    "baseline_git_head": "e64e2b3ca29e7757d9e22851fd22dfb569d91922",
     "blast_radius_estimate": {
-      "files": 20,
-      "lines": 1600
+      "files": 12,
+      "lines": 960
     },
     "active_task_id": null,
     "active_task_title": null,
