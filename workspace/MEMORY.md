@@ -1,10 +1,29 @@
 # MEMORY.md - 小虾的长期记忆
 
-_最后更新：2026-03-06 15:01_
+_最后更新：2026-03-10 09:11_
 
 ---
 
 ## 📋 重要事件
+
+### 2026-03-10
+- **网关安全加固** - 修复公网访问安全风险 ✅
+  - 问题：网关绑定 `0.0.0.0` (lan 模式) 允许所有网络接口访问
+  - 修复：改为 `127.0.0.1` (仅本地访问)
+  - Control UI allowedOrigins 清理为仅 localhost
+  - 提交：`b2534e1d4` → GitHub 备份完成
+  - 状态：✅ 已固化到 best_practices (security 类别)
+- **Evolver 进化周期 #0014** - 09:06 执行
+  - 运行 ID: `run_1773104762317`
+  - 触发信号：PowerShell `&&` 语法错误
+  - 选择基因：`gene_gep_repair_from_errors`
+  - 学习成果：PowerShell 使用 `;` 代替 `&&`
+  - 状态：✅ 已记录到 self-improving memory
+- **Self-Improving Memory 更新** - 记忆系统增强
+  - 新增错误记录：4 条 (syntax_error, command_alias, api_timeout, path_error)
+  - 新增最佳实践：3 条 (security, weather_api, powershell)
+  - 天气 API 切换：wttr.in → open-meteo.com (更稳定)
+  - 状态：✅ 记忆库已更新
 
 ### 2026-03-06
 - **video-gen-pro 技能创建** - AI 视频生成技能完整实现 ✅

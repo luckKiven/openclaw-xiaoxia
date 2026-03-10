@@ -1,1 +1,4 @@
-{"timestamp":"2026-03-08T13:00:00+08:00","command":"node skills/evolver/dist/cli.js","error":"Cannot find module 'dist/cli.js'","fix":"Evolver 技能没有 dist 目录，应该使用 index.js","category":"path_error","count":1}
+﻿{"timestamp":"2026-03-08T13:00:00+08:00","command":"node skills/evolver/dist/cli.js","error":"Cannot find module 'dist/cli.js'","fix":"Evolver 技能没有 dist 目录，应该使用 index.js","category":"path_error","count":1}
+{"timestamp":"2026-03-10T09:10:51+08:00","command":"cd path && node index.js","error":"PowerShell 不支持 && 语法","fix":"在 PowerShell 中使用 ; 代替 && 作为命令分隔符","category":"syntax_error","count":1}
+{"timestamp":"2026-03-10T09:10:51+08:00","command":"curl wttr.in","error":"curl 在 PowerShell 中是 Invoke-WebRequest 的别名，参数不兼容","fix":"直接使用 Invoke-WebRequest -Uri 'url' -UseBasicParsing","category":"command_alias","count":1}
+{"timestamp":"2026-03-10T09:10:51+08:00","command":"Invoke-WebRequest wttr.in","error":"wttr.in API 响应超时","fix":"使用 open-meteo.com API 获取天气数据更稳定","category":"api_timeout","count":1}
