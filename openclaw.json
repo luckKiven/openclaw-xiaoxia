@@ -369,15 +369,11 @@
   "gateway": {
     "port": 18788,
     "mode": "local",
-    "bind": "lan",
+    "bind": "loopback",
     "controlUi": {
       "allowedOrigins": [
-        "http://172.28.132.57:18788",
-        "htpp://172.28.128.1:18788",
-        "http://10.70.157.240:18788",
         "http://localhost:18788",
-        "http://127.0.0.1:18788",
-        "http://192.168.253.1:18788"
+        "http://127.0.0.1:18788"
       ]
     },
     "auth": {
